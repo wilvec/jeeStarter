@@ -6,17 +6,16 @@ import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import org.wilvec.jee.starter.entity.Rol;
 import org.wilvec.jee.starter.entity.Usuario;
 import org.wilvec.jee.starter.exceptions.BusinessException;
-import org.wilvec.jee.starter.exceptions.InvalidUserCredencialException;
+import org.wilvec.jee.starter.exceptions.CodigoExcepcion;
 
 /**
  *
  * @author wjvega
  */
 public class UsuarioDAOImpl implements IUsuarioDAO {
-    
+
     @PersistenceContext
     private EntityManager em;
 
@@ -27,9 +26,9 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 
     @Override
     public void save(Usuario usuario) {
-        if(usuario == null || usuario.getId() == null){
+        if (usuario == null || usuario.getId() == null) {
             em.persist(usuario);
-        }else{
+        } else {
             em.merge(usuario);
         }
     }
@@ -45,24 +44,16 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     }
 
     @Override
-    public Usuario getUsuarioByLogin(String stLogin, String stPassword) throws InvalidUserCredencialException,
-            BusinessException {
+    public Usuario getUsuarioByLogin(String stLogin, String stPassword) throws BusinessException {
         Query q = em.createNativeQuery("SELECT * FROM Usuarios WHERE "
-                + "NOMBRE_USUARIO=:nombreUsuario AND PASSWORD = SHA1(:passWord)", Usuario.class);
+                + "NOMBRE_USUARIO=:nombreUsuario AND PASSWORD = SHA1(:password)", Usuario.class);
         q.setParameter("nombreUsuario", stLogin);
-        q.setParameter("passWord", stPassword);
+        q.setParameter("password", stPassword);
         try {
             return (Usuario) q.getSingleResult();
-        } catch (NoResultException e) {
-            throw new InvalidUserCredencialException(e);
-        } catch (NonUniqueResultException e){
-            throw new BusinessException(e);
-        }
+        } catch (NoResultException | NonUniqueResultException e) {
+            throw new BusinessException(CodigoExcepcion.BE0001, e);
+        } 
     }
 
-    @Override
-    public List<Rol> getListaRolesUusario(Usuario usuario) {
-        return null;
-    }
-    
 }

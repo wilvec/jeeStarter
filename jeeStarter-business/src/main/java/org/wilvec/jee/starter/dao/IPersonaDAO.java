@@ -4,7 +4,6 @@ import java.util.List;
 import javax.ejb.Local;
 import org.wilvec.jee.starter.entity.Persona;
 import org.wilvec.jee.starter.exceptions.BusinessException;
-import org.wilvec.jee.starter.exceptions.ObjectNotFoundException;
 
 /**
  *
@@ -17,7 +16,7 @@ public interface IPersonaDAO {
     
     void save(final Persona persona) throws BusinessException;
     
-    Persona findById(final Long id) throws ObjectNotFoundException;
+    Persona findById(final Long id) throws BusinessException;
     
     void delete(Persona persona) throws BusinessException;
     

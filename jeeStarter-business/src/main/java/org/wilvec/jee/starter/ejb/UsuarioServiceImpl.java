@@ -7,8 +7,6 @@ import org.wilvec.jee.starter.dao.IUsuarioDAO;
 import org.wilvec.jee.starter.entity.Rol;
 import org.wilvec.jee.starter.entity.Usuario;
 import org.wilvec.jee.starter.exceptions.BusinessException;
-import org.wilvec.jee.starter.exceptions.InvalidUserCredencialException;
-import org.wilvec.jee.starter.exceptions.ObjectNotFoundException;
 
 /**
  *
@@ -16,7 +14,7 @@ import org.wilvec.jee.starter.exceptions.ObjectNotFoundException;
  */
 @Stateless
 public class UsuarioServiceImpl implements IUsuarioService {
-    
+
     @Inject
     private IUsuarioDAO usuarioDAO;
 
@@ -31,7 +29,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-    public Usuario findById(Long id) throws ObjectNotFoundException {
+    public Usuario findById(Long id) throws BusinessException {
         return usuarioDAO.findById(id);
     }
 
@@ -41,18 +39,13 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-    public Usuario getUsuarioByLogin(String stLogin, String stPassword) throws InvalidUserCredencialException, BusinessException {
+    public Usuario getUsuarioByLogin(String stLogin, String stPassword) throws BusinessException {
         return usuarioDAO.getUsuarioByLogin(stLogin, stPassword);
     }
 
     @Override
     public List<Rol> getListaRolesUusario(Usuario usuario) throws BusinessException {
-        try {
-            Usuario user = this.findById(usuario.getId());
-            return user.getRoles();
-        } catch (ObjectNotFoundException ex) {
-            throw new BusinessException(ex);
-        }
+        Usuario user = this.findById(usuario.getId());
+        return user.getRoles();
     }
-    
 }

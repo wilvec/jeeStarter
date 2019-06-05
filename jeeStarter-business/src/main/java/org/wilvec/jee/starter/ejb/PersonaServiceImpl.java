@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import org.wilvec.jee.starter.dao.IPersonaDAO;
 import org.wilvec.jee.starter.entity.Persona;
 import org.wilvec.jee.starter.exceptions.BusinessException;
-import org.wilvec.jee.starter.exceptions.ObjectNotFoundException;
 
 /**
  *
@@ -27,7 +26,7 @@ public class PersonaServiceImpl implements IPersonaService{
     }
 
     @Override
-    public Persona findById(Long id) throws ObjectNotFoundException {
+    public Persona findById(Long id) throws BusinessException {
         return personaDAO.findById(id);
     }
 

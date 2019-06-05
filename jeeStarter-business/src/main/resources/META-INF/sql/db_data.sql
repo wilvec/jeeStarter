@@ -28,8 +28,8 @@ INSERT INTO `dominio_tipodocumento` (`ID`, `CODIGO`, `NOMBRE`) VALUES
 
 -- Volcando datos para la tabla colegio_db.personas: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `personas` DISABLE KEYS */;
-INSERT INTO `personas` (`ID`, `DOMINIO_TIPODOCUMENTO_ID`, `NUMERO_DOCUMENTO`, `NOMBRE`, `APELLIDOS`, `EMAIL`, `FECHA_NACIMIENTO`, `DIRECCION`, `TEL_FIJO`, `TEL_CELULAR`, `FECHA_LOG`, `USUARIO_LOG`, `FOTO`) VALUES
-	(1, 1, '15173361', 'WILMAN JOSE', 'VEGA CASTILLA', 'WILMANVEGA@GMAIL.COM', '2019-05-15', 'Calle 127 A No. 53A-45, Torre 2, Piso 9', '57 1 611 9600', '611 9600', 'CURRENT_TIMESTAMP()', 1, NULL);
+INSERT INTO `personas` (`ID`, `DOMINIO_TIPODOCUMENTO_ID`, `NUMERO_DOCUMENTO`, `NOMBRE`, `APELLIDOS`, `EMAIL`, `FECHA_NACIMIENTO`, `DIRECCION`, `TEL_FIJO`, `TEL_CELULAR`,  `USUARIO_LOG`, `FOTO`) VALUES
+	(1, 1, '15173361', 'WILMAN JOSE', 'VEGA CASTILLA', 'WILMANVEGA@GMAIL.COM', '2019-05-15', 'Calle 127 A No. 53A-45, Torre 2, Piso 9', '57 1 611 9600', '611 9600',  1, NULL);
 /*!40000 ALTER TABLE `personas` ENABLE KEYS */;
 
 -- Volcando datos para la tabla colegio_db.roles: ~0 rows (aproximadamente)
@@ -40,14 +40,13 @@ INSERT INTO `roles` (`ID`, `NOMBRE_ROL`, `DESCRIPCION`) VALUES
 
 -- Volcando datos para la tabla colegio_db.usuarios: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` (`ID`, `NOMBRE_USUARIO`, `PASSWORD`, `FECHA_EXPIRACION`, `PERSONAS_ID`, `FECHA_LOG`, `USUARIOS_ID`) VALUES
-	(1, 'wilmanvega@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '5019-05-15', 1, '2019-05-15 20:33:35', 1);
+INSERT INTO `usuarios` (`ID`, `NOMBRE_USUARIO`, `PASSWORD`, `FECHA_EXPIRACION`, `PERSONAS_ID`, `USUARIOS_ID`) VALUES
+	(1, 'wilmanvega@gmail.com', '8df1ec6532b6cccf453fbdd08bc29e038066d8a9', '5019-05-15', 1, 1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 -- Volcando datos para la tabla colegio_db.usuarios_roles: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios_roles` DISABLE KEYS */;
-INSERT INTO `usuarios_roles` (`USUARIOS_ID`, `ROLES_ID`) VALUES
-	(1, 1);
+INSERT INTO `usuarios_roles` (`USUARIOS_ID`, `ROLES_ID`) VALUES (1, 1);
 /*!40000 ALTER TABLE `usuarios_roles` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
