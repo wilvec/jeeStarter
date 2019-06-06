@@ -50,7 +50,7 @@ public class LoginMB implements Serializable {
         this.password = password;
     }
 
-    public void acceder() {
+    public void login() {
          FacesContext context = FacesContext.getCurrentInstance();
         try {
             Usuario user = service.getUsuarioByLogin(usuario, password);
